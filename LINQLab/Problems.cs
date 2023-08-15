@@ -21,7 +21,7 @@ namespace LINQLab
             //RDemoOne();
             RProblemOne();
             //RDemoTwo();
-            //RProblemTwo();
+            RProblemTwo();
             //RProblemThree();
             //RProblemFour();
             //RProblemFive();
@@ -68,10 +68,10 @@ namespace LINQLab
         private void RProblemOne()
         {
             // Print the COUNT of all the users from the User table.
-            var users = _context.Users.Count();
+            var userscount = _context.Users.Count();
 
             Console.WriteLine("RProblemOne: Count of all users");
-            Console.WriteLine($"Count of all users: {users}");
+            Console.WriteLine($"Count of all users: {userscount}");
         }
 
         /*
@@ -94,7 +94,13 @@ namespace LINQLab
         {
             // Write a LINQ query that gets each product whose price is less than or equal to $100.
             // Print the name and price of all products
-
+            var productsLessOrEqual100 = _context.Products.Where(p => p.Price <= 100);
+            Console.WriteLine("RProblemTwo: List of products less or equal to 100");
+            foreach (Product product in productsLessOrEqual100)
+            {
+                Console.WriteLine($"{product.Name} - ${product.Price}");
+            }
+            
         }
 
         /*
