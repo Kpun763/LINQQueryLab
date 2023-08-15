@@ -30,7 +30,7 @@ namespace LINQLab
             //RDemoThree();
             RProblemSix();
             RProblemSeven();
-            //RProblemEight();
+            RProblemEight();
 
             //// <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
@@ -256,7 +256,27 @@ namespace LINQLab
         {
             // Write a query that retrieves all of the products in the shopping cart of users who have the role of "Employee".
             // Then print the product's name, price, and quantity to the console along with the email of the user that has it in their cart.
+            var employeeShoppingCart = _context.ShoppingCartItems
+                .Include(sci => sci.Product)
+                .Where(sci => sci.User.UserRoles.Any(ur => ur.Role.RoleName == "Employee"))
+                .GroupBy(sci => sci.User.Email);
 
+            Console.WriteLine();
+            Console.WriteLine("RProblemEight: All products in shopping cart of users who are employee's");
+            foreach (var group in employeeShoppingCart)
+            {
+                Console.WriteLine($"User email: {group.Key}");
+
+                foreach (var shoppingcartitem in group)
+                {
+                    if (shoppingcartitem.Product != null)
+                    {
+                        Console.WriteLine($"Product name: {shoppingcartitem.Product.Name}");
+                        Console.WriteLine($"Price: {shoppingcartitem.Product.Price}");
+                        Console.WriteLine($"Quantity: {shoppingcartitem.Quantity}");
+                    }
+                }
+            }
         }
         /*
             Expected Result
