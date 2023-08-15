@@ -28,14 +28,14 @@ namespace LINQLab
 
             //// <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
             //RDemoThree();
-            RProblemSix();
-            RProblemSeven();
-            RProblemEight();
+            //RProblemSix();
+            //RProblemSeven();
+            //RProblemEight();
 
             //// <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
             //// <><> C Actions (Create) <><>
-            //CDemoOne();
+            CDemoOne();
             //CProblemOne();
             //CDemoTwo();
             //CProblemTwo();
@@ -325,8 +325,15 @@ namespace LINQLab
         private void CProblemOne()
         {
             // Create a new Product object and add that product to the Products table. Choose any name and product info you like.
-
-
+            Product newProduct = new Product()
+            {
+                Id = 8,
+                Name = "Playstation 5",
+                Description = "A new gaming system by Sony",
+                Price = 399.00M
+            };
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
         }
 
         public void CDemoTwo()
