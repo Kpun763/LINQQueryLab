@@ -23,7 +23,7 @@ namespace LINQLab
             //RDemoTwo();
             RProblemTwo();
             RProblemThree();
-            //RProblemFour();
+            RProblemFour();
             //RProblemFive();
 
             //// <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
@@ -69,8 +69,9 @@ namespace LINQLab
         {
             // Print the COUNT of all the users from the User table.
             var userscount = _context.Users.Count();
-
+            Console.WriteLine();
             Console.WriteLine("RProblemOne: Count of all users");
+
             Console.WriteLine($"Count of all users: {userscount}");
         }
 
@@ -95,7 +96,9 @@ namespace LINQLab
             // Write a LINQ query that gets each product whose price is less than or equal to $100.
             // Print the name and price of all products
             var productsLessOrEqual100 = _context.Products.Where(p => p.Price <= 100);
+            Console.WriteLine();
             Console.WriteLine("RProblemTwo: List of products less or equal to 100");
+
             foreach (Product product in productsLessOrEqual100)
             {
                 Console.WriteLine($"{product.Name} - ${product.Price}");
@@ -120,7 +123,7 @@ namespace LINQLab
         {
             // Write a LINQ query that gets each product whose name that CONTAINS an "s".
             var productsContainingS = _context.Products.Where(p => p.Name.Contains("s"));
-
+            Console.WriteLine();
             Console.WriteLine("RProblemThree: Each product whose name contains an 's'");
 
             foreach(Product product in productsContainingS)
@@ -147,7 +150,14 @@ namespace LINQLab
         {
             // Write a LINQ query that gets all the users who registered BEFORE 2016.
             // Then print each user's email and registration date to the console.
+            var usersBefore2016 = _context.Users.Where(u => u.RegistrationDate < new DateTime(2016,1,1));
+            Console.WriteLine();
+            Console.WriteLine("RProbelmFour: Each user who registered before 2016");
 
+            foreach(var user in usersBefore2016)
+            {
+                Console.WriteLine($"User Email: {user.Email}, Registration Date: {user.RegistrationDate}");
+            }
         }
         /*
             Expected Result:
